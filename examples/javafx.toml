@@ -49,5 +49,4 @@ allowed_packages = [
     "javafx.util.converter"
 ]
 build_files = ["indexes/jfx"]
-maven_home = "/opt/maven"
 java_home = "/usr/lib/jvm/java-17-openjdk"

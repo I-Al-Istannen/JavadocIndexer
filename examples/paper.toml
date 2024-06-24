@@ -6,4 +6,3 @@ allowed_packages = [
 build_files = [
     "indexes/paper",
 ]
-maven_home = "/opt/maven"

@@ -10,4 +10,4 @@ allowed_packages = [
 build_files = [
     "indexes/junit5/pom.xml"
 ]
-maven_home = "/opt/maven"
+maven_home = "/usr/share/java/maven"

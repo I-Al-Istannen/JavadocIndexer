@@ -4,4 +4,3 @@ allowed_packages = [
     "*"
 ]
 build_files = ["indexes/JDA"]
-maven_home = "/opt/maven"

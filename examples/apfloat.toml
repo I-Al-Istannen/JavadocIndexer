@@ -4,4 +4,3 @@ allowed_packages = ["*"]
 build_files = [
     "indexes/apfloat/apfloat/pom.xml"
 ]
-maven_home = "/opt/maven"

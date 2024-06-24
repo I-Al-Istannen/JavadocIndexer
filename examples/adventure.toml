@@ -11,4 +11,3 @@ allowed_packages = [
 build_files = [
     "indexes/adventure",
 ]
-maven_home = "/opt/maven"
