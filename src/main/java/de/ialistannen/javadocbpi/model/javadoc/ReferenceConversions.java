@@ -9,7 +9,6 @@ import static de.ialistannen.javadocbpi.model.elements.DocumentedElementType.TYP
 import de.ialistannen.javadocbpi.model.elements.DocumentedElementReference;
 import de.ialistannen.javadocbpi.model.elements.DocumentedElementReference.ReferencePathElement;
 import de.ialistannen.javadocbpi.model.elements.DocumentedElementReference.StringPathElement;
-import java.util.regex.Pattern;
 import spoon.reflect.declaration.CtExecutable;
 import spoon.reflect.declaration.CtField;
 import spoon.reflect.declaration.CtModule;
@@ -23,13 +22,8 @@ import spoon.reflect.reference.CtModuleReference;
 import spoon.reflect.reference.CtPackageReference;
 import spoon.reflect.reference.CtReference;
 import spoon.reflect.reference.CtTypeReference;
-import spoon.reflect.visitor.CtScanner;
 
 public class ReferenceConversions {
-
-  private static final Pattern QUALIFIED = Pattern.compile(
-      "([\\p{L}_$][\\p{L}\\p{N}_$]*\\.)+([\\p{L}_$][\\p{L}\\p{N}_$]+)"
-  );
 
   public static DocumentedElementReference getReference(CtReference reference) {
     return switch (reference) {
@@ -109,7 +103,7 @@ public class ReferenceConversions {
   }
 
   public static String renderTypeReference(CtTypeReference<?> reference) {
-    String ref = unqualifyReference(reference);
+    String ref = reference.prettyprint();
     if (reference.isParentInitialized()
         && reference.getParent() instanceof CtParameter<?> param
         && param.isVarArgs()) {
@@ -119,30 +113,6 @@ public class ReferenceConversions {
       ref += "...";
     }
     return ref;
-  }
-
-  /**
-   * Replaces all qualified names in a reference by their unqualified form.
-   *
-   * @param reference the reference to convert
-   * @return a converted clone
-   */
-  private static String unqualifyReference(CtTypeReference<?> reference) {
-    CtTypeReference<?> newRef = reference.clone()
-        .setParent(reference.isParentInitialized() ? reference.getParent() : null);
-
-    newRef.accept(new CtScanner() {
-      @Override
-      public <T> void visitCtTypeReference(CtTypeReference<T> reference) {
-        reference.setPackage(reference.getFactory().createPackageReference());
-        super.visitCtTypeReference(reference);
-      }
-    });
-    return newRef.toString().replace("\n", " ");
-  }
-
-  public static String unqualifyReference(String fqn) {
-    return QUALIFIED.matcher(fqn).replaceAll("$2");
   }
 
 }
