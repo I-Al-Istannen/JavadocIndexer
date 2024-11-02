@@ -1,5 +1,5 @@
 output_path = "target/Jdk-Index.db"
-resource_paths = ["/usr/lib/jvm/java-22-openjdk/lib/src.zip"]
+resource_paths = ["/usr/lib/jvm/java-23-openjdk/lib/src.zip"]
 allowed_packages = [
     "java.base/",
     "java.compiler/",
