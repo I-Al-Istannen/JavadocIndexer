@@ -1,5 +1,5 @@
 output_path = "target/Paper-Api-Index.db"
-resource_paths = ["indexes/paper/Paper-API/src/main/java"] #, "indexes/paper/Paper-Server/src/main/java"]
+resource_paths = ["indexes/paper/paper-api/src/main/java"] #, "indexes/paper/Paper-Server/src/main/java"]
 allowed_packages = [
     "*"
 ]
